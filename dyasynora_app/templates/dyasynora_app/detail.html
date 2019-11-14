@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style media="screen">
+      body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}.w3-bar-block .w3-bar-item {padding:20px}
+    </style>
+  </head>
+  <body>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description}}</p>
+    <p>{{ project.date_created }}</p>
+    <p>{{ project.author }}</p>
+
+  <div class="w3-row-padding w3-padding-16" id="activities">
+    <h4>Project Activities</h4>
+    {% for activity in project.activity_set.all %}
+    <div class="w3-quarter">
+      <p>{{ activity.activity_name }}</p>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+<script>
+
+</script>
+  </body>
+</html>

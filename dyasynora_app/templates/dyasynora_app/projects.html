@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style>
+      img{
+        max-width:180px;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <title></title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- !PAGE CONTENT! -->
+    <div class="container mt-2 p-2 pl-3 bg-light border" >
+      <h1>{{ project.project_name }}</h1>
+      <div class="row">
+
+        <div style="background-color:lightpink" class="col">
+          <div><h3>Create New Project</32></div><br>
+          <form id="form">
+            {% csrf_token %}
+            Project Name: <input name="project_name" type="text"><br>
+            Project Description: <input name="project_description" type="text"><br>
+            Project Cost: <input name='project_cost' type='number'><br>
+            Project Photo: <input name='project_img' type='file' onchange="readURL(this);" />
+          </form><br>
+
+          <form id="actform">
+            {% csrf_token %}
+            Activity Name: <input name="project_name" type="text"><br>
+            Duration: <input name="project_description" type="number"><br>
+          </form><br>
+          <button id="add-btn">add project</button>
+          <button id="act-btn">add activity</button>
+        </div>
+
+        <div class="col" id="fetch">
+          <h4>Projects:</h4>
+          <button id="btn"> fetch projects </button><br><br>
+          <ul class="row" id="projectlist">
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col" style="background-color:lightblue">
+          <h4>Details of project:</h4>
+          <div id="detail"></div>
+          <img id="pic" src="https://i.ibb.co/Njhr8xD/ADD8E6.png" />
+        </div>
+
+    </div>
+
+      <script>
+        $(function fetchProjects() {
+          $("#btn").click(function () {
+            $("#projectlist").html('');
+            $.ajax ({
+              url : "{% url 'dyasynora_app:list of projects' %}",
+              method : "GET",
+              success : function (data) {
+                for (var i=0; i<data.projects.length;i++){
+                  $("#projectlist").append("<br><button style='width: 200px;' id="+data.projects[i].id +" onclick='detail_handler(this)'>" + data.projects[i].project_name + "</button>")
+                }
+              }
+            })
+          })
+        })
+
+        $(function addProject() {
+          $("#add-btn").click(function () {
+            $.ajax ({
+              url : "{% url 'dyasynora_app:new project' %}",
+              method : "POST",
+              data : $("#form").serializeArray(),
+              success : function (data) {
+                console.log(data)
+                $("#projectlist").append("<br><button style='width: 200px;' id="+ data.id + " onclick='detail_handler(this)'>"+ data.project_name + "</button>")
+              }
+            })
+          })
+        })
+
+        $(function addActivity() {
+          $("#act-btn").click(function () {
+            $.ajax ({
+              url : "{% url 'dyasynora_app:new activity' %}",
+              method : "POST",
+              data : $("#actform").serializeArray(),
+              console.log(data)
+              success : function (data) {
+                console.log(data)
+                $("#projectlist").append("<br><button style='width: 200px;' id="+ data.id + " onclick='detail_handler(this)'>"+ data.activity_name + "</button>")
+              }
+            })
+          })
+        })
+
+        function delete_handler(event){
+          var id = event.id
+          url="delete_project/"
+          $.ajax ({
+            url : url+id,
+            method : "DELETE",
+            success : function (data){
+              console.log(data)
+            }
+          })
+        }
+
+        function update_handler(event){
+          var id = event.id
+          url="update_project/"
+          console.log("update handler called")
+          project_cost = prompt("Please enter a new cost for this project:");
+          console.log(project_cost)
+          $.ajax({
+            type: 'PUT',
+            url: url+id,
+            data : {'project_cost' : project_cost},
+            success: function(data) {
+             console.log(project_cost)
+           }
+         })
+       }
+
+        function detail_handler(event){
+          $("#detail").empty();
+          $.ajax ({
+            url : "{% url 'dyasynora_app:list of projects' %}",
+            success : function (data){
+              for (var i=0; i<data.projects.length;i++){
+                if (data.projects[i].id == event.id){
+                  $("#detail").append("<br><h5><b>" + data.projects[i].project_name + "</b></h5><p><i>" + data.projects[i].project_description + "</i></p><br><p>" + data.projects[i].date_created + "</p><p>£" + data.projects[i].project_cost + "</p><button id="+ data.projects[i].id + " onclick='delete_handler(this)'> Delete this project</button><button class='update_button' id="+
+                  data.projects[i].id + " onclick='update_handler(this)'> Update project cost</button>")
+                }
+              }
+            }
+          })
+        }
+        function readURL(input) {
+          console.log("yay")
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  $('#pic')
+                      .attr('src', e.target.result);
+              };
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+    </script>
+  </body>
+</html>
