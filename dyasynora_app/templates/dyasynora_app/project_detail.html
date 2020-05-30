@@ -1,21 +1,279 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_created|date:"F d, Y" }}</small>
+  <style>
+.collapsible {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+font {
+  text-align: right;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+span {
+  content: "\203A";
+
+}
+.fa-check-circle {
+  color: green;
+  font-size: 80px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+   <main role="main" class="container">
+     <div style="margin:0 auto; width: 350px; padding: 4px; background-color: black;">
+      <h2 style="color: white;" align="center">{{ object.name }}</h2>
+      </div>
+
+    <div class="row" style="margin:0 auto; padding: 7px; width: 600px;">
+
+      <h2 class="col" align="center" style=' font-size:14px;'><i class='fas fa-map-marker-alt'></i> {{object.city}}</h2>
+
+      <h2 class="col" align="center" style='font-size:14px;'> By {{object.org}}</h2>
+
+      <h2 class="col" style='font-size:14px;'><i class="fa fa-circle-o-notch fa-spin"></i> Ongoing</h2>
+
+    </div>
+
+      <br><br>
+
+
             {% if object.author == user %}
               <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'dyasynora_app-project-update' object.id %}">Update Project Details</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'dyasynora_app-project-delete' object.id %}">Delete Project</a>
+                <br>
+                <a class="btn btn-info btn-sm mt-1 mb-1" href="#">Add Activity</a>
               </div>
             {% endif %}
+          <div class="row">
+            <div style="width: 440px;" class="col">
+          <img style="padding-left: 15px;" src="{{ project.image.url }}" height="390px" width="440px"><br>
+          <div style="padding-left: 15px; width: 440px;">
+          <br>
+          <button type="button" class="btn btn-dark">Share</button>
+          <button type="button" class="btn btn-light"></button>
+          <button type="button" class="btn btn-light"></button>
+          <button type="button" class="btn btn-light"></button>
+
+          <button type="button" class="btn btn-dark">Like</button>
+          <button type="button" class="btn btn-dark">Comment</button>
+          <button type="button" class="btn btn-dark">Follow</button>
           </div>
-          <h2 class="article-title">{{ object.name }}</h2>
-          <img src="{{ project.image.url }}" height="300" width="100%"">
-          <p class="article-content">{{ object.description }}</p>
-        </div>
-    </article>
+          <br>
+          <p style="padding:10px">
+            {{object.description}}
+          </p>
+          </div>
+
+          <div class="col">
+
+            <div style="padding:10px;">
+            Project Completion<br><br>
+            <div class="w3-light-grey">
+              <div class="w3-green" style="padding-left:185px; height:24px;width:75%">75% Complete</div>
+            </div><br>
+            </div>
+            <br>
+            <div>
+
+              <button type="button" class="collapsible">Sponsor!  </button>
+
+              <div class="content">
+                <div class="row">
+                  <div class="col">
+                <br>  <a href="">£20 Month of non-perishables for a family.</a>
+                <br>
+                  <br><br><a href="{% url 'dyasynora_app-payment' %}"> £10 5 x Iftar meals.</a>
+                  <br><br><br> £ Other amount.<br>
+                  </div>
+                  <div class="col" align="right">
+              <a href=""><font size="30">›</font></a>
+              <br><a href="{% url 'dyasynora_app-payment' %}"><font size="30">›</font></a>
+              <br><a href=""><font size="30">›</font></a>
+                  </div>
+                  </div>
+              </div>
+
+              <br><br>
+
+              <button type="button" align="right" class="collapsible">Volunteer!</button>
+              <div class="content">
+
+                  <br>
+
+                    <button type="button" class="collapsible">Collecting plastic bottles + putting up posters.</button>
+                      <div class="content">
+
+                      </div><br>
+                    <br>
+                  <button type="button" class="collapsible">Handing out reusable bags + info leaflets.</button>
+                  <div class="content"><br><p>Meet outside Burri Café, Friday @2:30pm.<br><br>
+                  We will be walking around in groups of 3 handing out reusable bags + info leaflets and talking to people about plastic usage.</p>
+                  <br>
+                  <button id="myBtn" type="button" class="btn btn-success">Attending!</button>
+                </div>
+                  <br><br>
+                  <button type="button" class="collapsible">Request volunteering notifications.</button>
+                  <br>
+
+                  <br><br>
+
+                  <!-- The Modal -->
+                  <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <i class="fa fa-check-circle" aria-hidden="true"></i><br>
+                      <p align="center">Thank you for volunteering for Project Plastic Free Burri. <br>See you outside Burri Café, Friday @ 2:30pm</p>
+                    </div>
+                  </div>
+              </div>
+
+              <br><br>
+              <button type="button" class="collapsible">Mentor!</button>
+              <div class="content">
+                <p>
+                  <br>
+
+                    <button type="button" class="collapsible">Interior designer for new library café.</button>
+                      <div class="content">
+
+                      </div>
+
+                  <button type="button" class="collapsible">Network Engineer to setup Public WiFi.</button>
+                  <div class="content"><br> <p><b>Network Engineer for Public Wifi</b><br>
+
+                    <br>
+                    We need an engineer to design the public wifi network that will provide coverage for the whole library.
+
+                    <br><br>
+                    Why do you think you will be a good fit?
+                    <textarea rows="4" cols="50">
+
+                  </textarea>
+                  </p>
+                  <br>
+                  <p align="center"><button id="myBtn" type="button" class="btn btn-success">Apply</button></p>
+                </div>
+                  <br><br>
+                  <button type="button" class="collapsible">Make a mentoring suggestion.</button>
+                  <br>
+
+                  <br><br>
+
+
+
+              </div>
+
+            </div>
+
+            <br>
+
+            <div style="padding:10px;">
+            About {{object.org}}:<br><br>
+            {{object.org_desc}}
+            </div>
+
+            </div>
+          </div>
+      </main>
+      <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
   {% endblock content %}

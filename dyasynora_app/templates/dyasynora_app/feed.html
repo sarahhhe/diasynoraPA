@@ -1,22 +1,22 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-    <div class="container">
+
+      <br><h2> Browse Projects </h2><br>
       <div class="row">
     {% for project in projects %}
-      {% if forloop.counter0|divisibleby:6 and not forloop.first %}<div class="w-100"></div>{% endif %}
       <div class="col">
-        <article class="media content-section" style="height: 400px; width: 400px">
-        <img class="rounded-circle article-img" src="{{ project.author.profile.image.url }}">
+        <article class="media content-section" style="width: 290px">
+        <!--<img class="rounded-circle article-img" src="{{ project.author.profile.image.url }}">-->
         <div class="media-body">
           <div class="article-metadata">
-            <a class="mr-2" href="#">{{ project.author }}</a>
+            <a class="mr-2" href="{% url 'dyasynora_app-profile-detail' project.id %}">{{ project.author }}</a>
             <small class="text-muted">{{ project.date_created|date:"F d, Y" }}</small>
           </div>
-          <h2><a class="article-title" href="{% url 'dyasynora_app-project-detail' project.id %}">{{ project.name }}</a></h2>
-          <img src="{{ project.image.url }}" height="200px" width="250px">
-          <p class="article-content">{{ project.description }}</p>
+          <a href="{% url 'dyasynora_app-project-detail' project.id %}"><img src="{{ project.image.url }}" height="200px" width="250px"></a>
+        <h3 align="center"><a class="article-title" href="{% url 'dyasynora_app-project-detail' project.id %}">{{ project.name }}</a></h3>
+
         </div>
       </article></div>
     {% endfor %}
-    </div></div>
+    </div>
   {% endblock content %}

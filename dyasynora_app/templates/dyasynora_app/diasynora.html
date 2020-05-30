@@ -1,37 +1,94 @@
 {% extends "dyasynora_app/base.html" %}
 {% block content %}
 <!DOCTYPE html>
-  <h1 align="center">DiaSynora</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<style>
+  .full-height {
+    height: 100%;
+  }
+  button {
+    background-color: #264653;
+    font-size: 45px;
+    border-radius: 15px 15px;
+
+  }
+
+  .container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bottom-left {
+  color: white;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  color: black;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+</style>
+<div class="full-height">
+  <p align="center">
+
   </p>
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://i.ibb.co/v3gfBWd/image.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://i.ibb.co/v3gfBWd/image.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://i.ibb.co/v3gfBWd/image.jpg" alt="Third slide">
-    </div>
-  </div>
+  <div class="container">
+  <img src="https://i.ibb.co/LkPF997/bg.jpg" style="width:100%;">
+  <div style="padding:10px; padding-bottom: 640px;" class="bottom-left">Project Success: Adult Literacy Program</div>
+
+  <div style="padding-right: 210px; padding-top:530px;" class="top-right"><p style="font-size: 26px;"><b>Connect with sponsors, volunteers and mentors<br> to bring your community project to life</b></p></div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><div style="padding-left: 80px;" class="centered"><p align="center"><button onclick="window.location.href='{% url 'dyasynora_app-project-create' %}'" class="btn btn-primary btn-lg" >Create Project</button></p></div>
 </div>
-<div>
-  {% for project in projects %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ project.author.profile.image.url }}">
-      <div class="media-body">
-        <div class="article-metadata">
-          <a class="mr-2" href="#">{{ project.author }}</a>
-          <small class="text-muted">{{ project.date_created|date:"F d, Y" }}</small>
-        </div>
-        <h2><a class="article-title" href="{% url 'dyasynora_app-project-detail' project.id %}">{{ project.name }}</a></h2>
-        <img src="{{ project.image.url }}" height="300" width="100%"">
-        <p class="article-content">{{ project.description }}</p>
-      </div>
-    </article>
-  {% endfor %}
+
+
+</div>
+
+<div class="full-height">
+  <h1 align="center">cute quotes about sudan and the community
+    <br><br>DiaSynora
+  {Cross-Borders}<br>
+  <i>for Community-Led Projects
+(in Khartoum)</i>
+  </h1>
+</div>
+
+<div class="full-height">
+  <h1 align="center">Engaging and leveraging different parties and actors
+</h1><br><br><br><br>
+<div class="row">
+<div class="col"><a href="{% url 'dyasynora_app-project-create' %}">Leaders</a>
+</div>
+<div class="col">Volunteers
+</div>
+<div class="col">Mentors
+</div>
+<div class="col">Sponsors
+</div>
+</div>
 </div>
 {% endblock content %}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'location_field.apps.DefaultConfig',
 ]
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 MIDDLEWARE = [

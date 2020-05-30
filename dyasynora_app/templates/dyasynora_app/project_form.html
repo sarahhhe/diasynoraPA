@@ -1,15 +1,39 @@
 {% extends "dyasynora_app/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="content-section">
+<br>
+<br>
+  <div class="content-section" style="width: 500px">
     <form method="POST">
       {% csrf_token %}
       <fieldset class="form-group">
         <legend class="border-bottom mb-4">Create Project</legend>
         {{ form|crispy }}
+        <br><p> Create project as:</p>
+        <div class="row">
+        <div class="col">
+        <input type="radio" name="individual" id="individual" value="always"/>
+        <label for="individual">An individual</label>
+        <br> <p style="padding-left: 20px;" class='text-muted'><font size="2">I am the sole organiser.</font></p>
+        <br><br>
+        <input type="radio" name="team" id="team" value="never"/>
+        <label for="team">A one-off project</label>
+        </div>
+
+        <div class="col">
+        <input type="radio" name="team" id="team" value="never"/>
+        <label for="team">A team</label>
+        <p style="padding-left: 20px;" class='text-muted'><font size="2">I will invite others to work on this project with me.</font></p>
+        <br>
+        <input type="radio" name="team" id="team" value="never"/>
+        <label for="team">An ongoing project</label>
+
+        </div>
+        </div>
       </fieldset>
-      <div class="form-group">
-        <button class="btn btn-outline-info" type="submit"> Post </button>
+      <p style="padding-left: 20px;" class='text-muted'>By continuing, you agree to the DiaSynora terms and acknowledge receipt of our privacy notice, and have read the Fundraising Regulator's guidance.</p>
+      <div align="right" class="form-group">
+        <button class="btn btn-primary" type="submit"> Save & Finish </button>
       </div>
     </form>
   </div>
