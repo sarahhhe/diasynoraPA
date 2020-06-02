@@ -22,6 +22,9 @@ def home(request):
         context['query'] = str(query)
     return render(request, 'dyasynora_app/diasynora.html', context)
 
+def crowdsourcers(request):
+    return render(request, 'dyasynora_app/crowdsourcers.html')
+
 # returns query set object containing a dictionary
 def activities_json(request):
     return JsonResponse({

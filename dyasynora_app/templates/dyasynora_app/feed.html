@@ -1,22 +1,27 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-
-      <br><h2> Browse Projects </h2><br>
-      <div class="row">
-    {% for project in projects %}
-      <div class="col">
-        <article class="media content-section" style="width: 290px">
-        <!--<img class="rounded-circle article-img" src="{{ project.author.profile.image.url }}">-->
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="{% url 'dyasynora_app-profile-detail' project.id %}">{{ project.author }}</a>
-            <small class="text-muted">{{ project.date_created|date:"F d, Y" }}</small>
+    <h3 style="padding:1em;"> Browse Projects </h3>
+    <div class="container-fluid">
+      <div class="px-lg-5">
+        <div class="row">
+          <!-- Gallery item -->
+          {% for project in projects %}
+          <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm">
+              <img src="{{project.image.url}}" class="fade cropped img-fluid card-img-top">
+              <div class="p-4">
+                <h5><a href="#" class="text-dark">{{project.name}}</a></h5>
+                <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fas fa-fist-raised"></i><span> {{project.supporters}}</span></p>
+                  <div class="badge badge-danger px-3 rounded-pill font-weight-normal"><i class="fas fa-map-marker-alt"></i> {{project.city}}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="{% url 'dyasynora_app-project-detail' project.id %}"><img src="{{ project.image.url }}" height="200px" width="250px"></a>
-        <h3 align="center"><a class="article-title" href="{% url 'dyasynora_app-project-detail' project.id %}">{{ project.name }}</a></h3>
-
+          {% endfor %}
+          <!-- End -->
         </div>
-      </article></div>
-    {% endfor %}
+      </div>
     </div>
   {% endblock content %}

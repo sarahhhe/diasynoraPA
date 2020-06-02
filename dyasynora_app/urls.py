@@ -4,6 +4,7 @@ from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView,
 
 urlpatterns = [
     path('', views.home, name='dyasynora_app-diasynora'),
+    path('crowdsourcers/', views.crowdsourcers, name='dyasynora_app-crowdsourcers'),
     path('feed/', PostListView.as_view(), name='dyasynora_app-feed'),
     path('project/<int:pk>/', PostDetailView.as_view(), name='dyasynora_app-project-detail'),
     path('profile/<int:pk>/', UserDetailView.as_view(), name='dyasynora_app-profile-detail'),
