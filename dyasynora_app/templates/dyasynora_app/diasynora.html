@@ -1,10 +1,10 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-<div style="background: url(https://i.ibb.co/StW8pg2/landscape-sudan.jpg)" class="jumbotron bg-cover text-white">
+<div style="background: url(https://i.ibb.co/6JmxQ5h/Screenshot-2020-06-03-at-03-01-30.png)" class="jumbotron bg-cover text-white">
     <div class="container py-5 text-center">
         <h1 style="color:white;"class="display-4 font-weight-bold">DiaSynora</h1>
         <p class="font-italic mb-0">Connect with sponsors, volunteers and mentorss to bring your community to life.</p>
-        <a href="#" role="button" class="btn btn-primary px-5">Start Project</a>
+        <a href="{% url 'dyasynora_app-project-create' %}" role="button" class="btn btn-primary px-5">Start Project</a>
     </div>
 </div>
 
@@ -22,27 +22,13 @@
     </div>
 </div>
 
-<!-- For demo purpose -->
-<div class="container py-5">
-    <div class="row text-center text-white">
-        <div class="col-lg-8 mx-auto">
-            <h1 class="display-4"></h1>
-            <p class="lead mb-0">Using Bootstrap 4 grid and utilities, create a nice team page.</p>
-            <p class="lead">Snippet by<a href="https://bootstrapious.com/snippets" class="text-white">
-                <u>Bootstrapious</u></a>
-            </p>
-        </div>
-    </div>
-</div><!-- End -->
-
-
 <div class="container">
+  <h2 class="h3 font-weight-bold">Project Leaders</h2>
     <div class="row text-center">
-
-        <!-- Team item -->
+        <!-- Leader item -->
         <div class="col-xl-3 col-sm-6 mb-5">
-            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Manuella Nevoresky</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+            <div class="leaderdiv bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/NNH16gR/Screenshot-2020-06-03-at-02-35-26.png" width="100" class="croppedimg img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">YFCD</h5><span class="small text-uppercase text-muted">Youth For Change and Development</span>
                 <ul class="social mb-0 list-inline mt-3">
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
@@ -52,10 +38,10 @@
             </div>
         </div><!-- End -->
 
-        <!-- Team item -->
+        <!-- Leader item -->
         <div class="col-xl-3 col-sm-6 mb-5">
-            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-2.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Samuel Hardy</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+            <div class="leaderdiv bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/FbWjgLL/fill-a-heart.jpg" width="100" class="croppedimg img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">FILL A HEART</h5><span class="small text-uppercase text-muted"></span>
                 <ul class="social mb-0 list-inline mt-3">
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
@@ -65,10 +51,10 @@
             </div>
         </div><!-- End -->
 
-        <!-- Team item -->
+        <!-- Leader item -->
         <div class="col-xl-3 col-sm-6 mb-5">
-            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-1.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Tom Sunderland</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+            <div class="leaderdiv bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/7QXJRLW/Screenshot-2020-06-03-at-02-48-55.png" width="100" class="croppedimg img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">MFS</h5><span class="small text-uppercase text-muted">Moving Forward Sudan</span>
                 <ul class="social mb-0 list-inline mt-3">
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
@@ -78,10 +64,10 @@
             </div>
         </div><!-- End -->
 
-        <!-- Team item -->
+        <!-- Leader item -->
         <div class="col-xl-3 col-sm-6 mb-5">
-            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-7.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">John Tarly</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+            <div class="leaderdiv bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/hsMnRS7/Screenshot-2020-06-03-at-02-43-33.png" width="100" class="croppedimg img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">SDN</h5><span class="small text-uppercase text-muted">Sudanese Diaspora Network</span>
                 <ul class="social mb-0 list-inline mt-3">
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
                     <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>

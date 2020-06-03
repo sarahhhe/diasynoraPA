@@ -36,11 +36,21 @@ overflow:hidden;
 background-color: white;
 align:center;
 }
+.leaderdiv{
+  width:17em;
+  height:20em;
+  overflow:hidden;
+}
 .cropped {
     width: 100%; /* width of container */
     height: 12em; /* height of container */
     object-fit: cover;
     padding:1em;
+}
+.croppedimg {
+    width: 6em; /* width of container */
+    height: 6em; /* height of container */
+    object-fit: cover;
 }
 .fade {
    opacity: 1;
