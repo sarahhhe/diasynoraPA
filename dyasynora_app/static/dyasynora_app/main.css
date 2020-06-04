@@ -26,9 +26,6 @@ h6 {
 .image {
   min-height: 100vh;
 }
-.nav-pills .nav-link {
-  color: #555;
-}
 .cropdiv {
 width:15em;
 height:20em;
@@ -52,15 +49,6 @@ align:center;
     height: 6em; /* height of container */
     object-fit: cover;
 }
-.fade {
-   opacity: 1;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-}
-.fade:hover {
-      opacity: 0.5;
-}
 .bg-image {
   background-image: url('https://i.ibb.co/0cNfC22/Screenshot-2020-05-31-at-03-43-25.png');
   background-size: cover;
@@ -75,10 +63,72 @@ header.masthead {
   padding-bottom: 8rem;
 }
 
+/* Zoom In #1 */
+.zoom img {
+	-webkit-transform: scale(0.95);
+	transform: scale(0.95);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.zoom:hover img {
+	-webkit-transform: scale(1.0.5);
+	transform: scale(1.05);
+}
 body {
   background: #f4f4f4;
 }
+/* Timeline holder */
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
 
+ /* Timeline vertical line */
+ul.timeline:before {
+    content: ' ';
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+    left: 16px;
+    width: 4px;
+    height: 100%;
+    z-index: 400;
+    border-radius: 1rem;
+}
+
+li.timeline-item {
+    margin: 20px 0;
+}
+
+/* Timeline item arrow */
+.timeline-arrow {
+    border-top: 0.5rem solid transparent;
+    border-right: 0.5rem solid #fff;
+    border-bottom: 0.5rem solid transparent;
+    display: block;
+    position: absolute;
+    left: 2rem;
+}
+
+/* Timeline item circle marker */
+li.timeline-item::before {
+    content: ' ';
+    background: #ddd;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    left: 11px;
+    width: 14px;
+    height: 14px;
+    z-index: 400;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+a{
+  color: black;
+  text-decoration: none;
+}
 .banner {
   background: #a770ef;
   background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
@@ -201,19 +251,6 @@ ul {
 .bg-steel {
   background-color:	black;
 }
-
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
-}
-
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
-}
-
 .content-section {
   background: #ffffff;
   padding: 5px 20px;
@@ -222,7 +259,35 @@ ul {
   margin-bottom: 20px;
   width: 300px;
 }
-
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding: 0.2em;
+}
+.searchTerm {
+  width: 10em;
+  border: 0.2em solid white;
+  border-right: none;
+  height: 2em;
+  border-radius: 50em 0 0 50em;
+  outline: none;
+  color: green;
+}
+.searchTerm:focus{
+  color: #00B4CC;
+}
+.searchButton {
+  width: 2.5em;
+  height: 2em;
+  border: 0.2em solid white;
+  background: transparent;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 50em 50em 0;
+  cursor: pointer;
+  font-size: 15px;
+}
 .article-title {
   color: #444444;
 }

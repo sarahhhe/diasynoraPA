@@ -5,7 +5,9 @@
   <div class="row mb-5">
     <div class="col-lg-8 text-white py-4 text-center mx-auto">
       <h1 class="display-4">{{object.name}}</h1>
-      <img src="{{object.image.url}}" width="700em" height="450em">
+      <div class="p-5 rounded shadow mb-5">
+      <img src="{{object.image.url}}" width="100%" height="350em">
+      </div>
     </div>
   </div>
   <!-- End -->
@@ -13,26 +15,65 @@
     <!-- Rounded tabs -->
     <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
       <li class="nav-item flex-sm-fill">
-        <a id="idea-tab" data-toggle="tab" href="#idea" role="tab" aria-controls="idea" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active">Idea</a>
+        <a id="idea-tab" data-toggle="tab" href="#idea" role="tab" aria-controls="idea" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active"><i class="fas fa-lightbulb"></i> Idea</a>
       </li>
       <li class="nav-item flex-sm-fill">
-        <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Gallery</a>
+        <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><i class="fas fa-images"></i> Gallery</a>
       </li>
       <li class="nav-item flex-sm-fill">
-        <a id="supporters-tab" data-toggle="tab" href="#supporters" role="tab" aria-controls="supporters" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Supporters</a>
+        <a id="supporters-tab" data-toggle="tab" href="#supporters" role="tab" aria-controls="supporters" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><i class="fas fa-hands-helping"></i> Supporters</a>
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">
       <div id="idea" role="tabpanel" aria-labelledby="idea-tab" class="tab-pane fade px-4 py-5 show active">
         <p class="text-muted">{{object.description}}</p>
-        <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <!-- Timeline -->
+                <ul class="timeline">
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">Title of section 1</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>21 March, 2019</span>
+                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+                    </li>
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">Title of section 2</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>5 April, 2019</span>
+                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper.</p>
+                        <p class="text-small mt-2 font-weight-light">Libero expedita explicabo eius fugiat quia aspernatur autem laudantium error architecto recusandae natus sapiente sit nam eaque, consectetur porro molestiae ipsam! Deleniti.</p>
+                    </li>
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">Title of section 3</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>18 August, 2019</span>
+                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+                    </li>
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">Title of section 4</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>10 October, 2019</span>
+                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+                        <p class="text-small mt-2 font-weight-light">Voluptatibus temporibus esse illum eum aspernatur, fugiat suscipit natus! Eum corporis illum nihil officiis tempore. Excepturi illo natus libero sit doloremque, laborum molestias rerum pariatur quam ipsam necessitatibus incidunt, explicabo.</p>
+                    </li>
+                </ul><!-- End -->
+            </div>
+        </div>
+    </div>
+
       </div>
       <div id="gallery" role="tabpanel" aria-labelledby="gallery-tab" class="tab-pane fade px-4 py-5">
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+            </div>
+            <div class="col-md-4">
+                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+            </div>
+            <div class="col-md-4">
+                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+            </div>
+          </div>
+        </div>
       </div>
       <div id="supporters" role="tabpanel" aria-labelledby="supporters-tab" class="tab-pane fade px-4 py-5">
         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute

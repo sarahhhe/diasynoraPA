@@ -7,13 +7,13 @@
           <!-- Gallery item -->
           {% for project in projects %}
           <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="col-xl-3 col-lg-4 col-md-6 mb-4">
-            <div class="bg-white rounded shadow-sm">
-              <img src="{{project.image.url}}" class="fade cropped img-fluid card-img-top">
+            <div class="zoom bg-white rounded shadow-sm">
+                <img src="{{project.image.url}}" class="cropped img-fluid card-img-top">
               <div class="p-4">
                 <h5><a href="#" class="text-dark">{{project.name}}</a></h5>
                 <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
                 <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                  <p class="small mb-0"><i class="fas fa-fist-raised"></i><span> {{project.supporters}}</span></p>
+                  <p class="small mb-0"><i class="fas fa-hands-helping"></i><span> {{project.supporters}}</span></p>
                   <div class="badge badge-danger px-3 rounded-pill font-weight-normal"><i class="fas fa-map-marker-alt"></i> {{project.city}}</div>
                 </div>
               </div>
