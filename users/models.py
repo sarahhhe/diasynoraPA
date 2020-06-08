@@ -10,7 +10,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=128, blank=True)
     bio = models.TextField(blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-
+    account_type = models.CharField(max_length=3)
+    
     def __str__(self):
         return f'{self.user.username} Profile'
 

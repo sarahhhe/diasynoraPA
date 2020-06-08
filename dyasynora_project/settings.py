@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'location_field.apps.DefaultConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,6 +105,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 300,
+        'width': 300,
+        'toolbar_Custom': [
+            ['Bold', 'Link', 'Image'],
+        ],
+    },
+
+    'special': {
+        'toolbar': 'Special',
+        'height': 200,
+        'width': 400,
+        'toolbar_Special': [
+            ['Bold'],['Link'],['Image'],
+        ],
+        'extraPlugins': 'codesnippet',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

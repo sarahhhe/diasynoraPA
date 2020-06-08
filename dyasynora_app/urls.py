@@ -15,4 +15,6 @@ urlpatterns = [
     path('leaders/', views.leaders, name='dyasynora_app-leaders'),
     path('payment/', views.payment, name='dyasynora_app-payment'),
     path('new_activity/', views.new_activity, name='new activity'),
+    path('add/project/', views.add_project, name='project-create'),
+    path('add/event/', views.add_event, name='event-create'),
 ]

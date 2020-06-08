@@ -2,8 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from dyasynora_app.models import Project
+from django.views.generic import DetailView
+from .models import Profile
 
 # Create your views here.
+class ProfileDetailView(DetailView):
+    model = Profile
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileDetailView, self).get_context_data(**kwargs)
+        context['projects'] = Project.objects.all()
+        return context
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)

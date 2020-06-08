@@ -3,7 +3,7 @@ body {
   color: #333333;
   margin-top: 5rem;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
+  color: #264653;
 }
 /*!
  * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
@@ -13,15 +13,12 @@ body {
  .bg-cover {
      background-size: cover !important;
  }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+ h1, h2, h3, h4, h5, h6, p {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
+  color: #264653;
 }
+
 .login,
 .image {
   min-height: 100vh;
@@ -50,7 +47,7 @@ align:center;
     object-fit: cover;
 }
 .bg-image {
-  background-image: url('https://i.ibb.co/0cNfC22/Screenshot-2020-05-31-at-03-43-25.png');
+  background-image: url('https://i.ibb.co/dcZR7wq/SH8-0350.jpg');
   background-size: cover;
   background-position: center center;
 }
@@ -100,6 +97,38 @@ ul.timeline:before {
 li.timeline-item {
     margin: 20px 0;
 }
+.collapsible-link::before {
+  content: '';
+  width: 14px;
+  height: 2px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 1rem;
+  display: block;
+  transition: all 0.3s;
+}
+
+/* Vertical line */
+.collapsible-link::after {
+  content: '';
+  width: 2px;
+  height: 14px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 7px);
+  right: calc(1rem + 6px);
+  display: block;
+  transition: all 0.3s;
+}
+
+.collapsible-link[aria-expanded='true']::after {
+  transform: rotate(90deg) translateX(-1px);
+}
+
+.collapsible-link[aria-expanded='true']::before {
+  transform: rotate(180deg);
+}
 
 /* Timeline item arrow */
 .timeline-arrow {
@@ -126,8 +155,11 @@ li.timeline-item::before {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 a{
-  color: black;
+  color: #264653;
   text-decoration: none;
+}
+p.white{
+  color:white;
 }
 .banner {
   background: #a770ef;
@@ -237,19 +269,13 @@ footer.footer {
   border: 1px solid red;
   padding-left: 50px;
 }
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
+
 .full-height {
   height: 100%;
 }
 
 ul {
   margin: 0;
-}
-
-.bg-steel {
-  background-color:	black;
 }
 .content-section {
   background: #ffffff;
@@ -293,7 +319,7 @@ ul {
 }
 
 a.article-title:hover {
-  color: #428bca;
+  color: #264653;
   text-decoration: none;
 }
 
@@ -314,7 +340,7 @@ a.article-title:hover {
 }
 
 .article-metadata a:hover {
-  color: #333;
+  color: #264653;
   text-decoration: none;
 }
 
