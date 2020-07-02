@@ -1,143 +1,224 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-  <div class="container py-5">
-  <!-- For demo purpose -->
-  <div class="row mb-5">
-    <div class="col-lg-8 text-white py-4 text-center mx-auto">
-      <h1 class="display-4">{{object.title}}</h1>
-      <div class="p-5 rounded shadow mb-5">
-      <img src="{{object.image.url}}" width="100%" height="350em">
+  <div style="padding:2em;">
+  <div class="container">
+  {% if object.author == user %}
+  <div class="c">
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-project' object.id %}">Edit Project</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete-project' object.id %}">Delete</a>
+  </div>
+  {% endif %}
+  <div class="proj-center">
+  <div class="c">
+    <div class="proj-title"><h1>{{object.title}}</h1></div>
+    <p title="Project Location"><i class="fas fa-map-marker-alt"></i> Bahri, Khartoum &nbsp;
+       <i class="fas fa-hand-holding-usd"></i>
+       <span class="sponsor-color">
+           {% if object.campaign_set.all.count == 1 %}
+           {{object.campaign_set.all.count}} campaign
+           {% else %}
+           {{object.campaign_set.all.count}} campaigns
+           {% endif %}
+         </span> &nbsp;
+       <i class="far fa-calendar-alt"></i>
+       <span class="volunteer-color">
+         {% if object.event_set.all.count == 1 %}
+         {{object.event_set.all.count}} event
+         {% else %}
+         {{object.event_set.all.count}} events
+         {% endif %}
+       </span> &nbsp;
+       <i class="fas fa-chalkboard-teacher"></i>
+       <span class="mentor-color">
+         {% if object.opportunity_set.all.count == 1 %}
+         {{object.opportunity_set.all.count}} opportunity
+         {% else %}
+         {{object.opportunity_set.all.count}} opportunities
+         {% endif %}
+       </span>
+    </p>
+  </div>
+  <div class="row proj-center">
+    <div class="col-8">
+    <img class="proj-img-center" src="{{object.image.url}}">
+    </div>
+    <div class="col-4">
+      {% if object.campaign_set.all.count != 0%}
+      <h2 style="color:#E9C46A;">
+        809,760 SDG
+        <span style="color:grey;font-size:0.3em;" class="small">
+          raised on
+          {% if object.campaign_set.all.count != 0 %}
+            {% if object.campaign_set.all.count == 1 %}
+            {{object.campaign_set.all.count}} campaign
+            {% else %}
+            {{object.campaign_set.all.count}} campaigns
+            {% endif %}
+          {% endif %}
+        </span>
+      </h2>
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 86%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
-      <span class="small text-gray"><a href="{% url 'profile-detail' object.author.id %}">{{ object.author }}</a></span>
+      {% endif %}
+      {% if object.event_set.all.count != 0%}
+      <h2 style="color:#F4A261;">
+      239
+      <span style="color:grey;font-size:0.3em;" class="small">
+        volunteers on
+        {% if object.event_set.all.count != 0 %}
+          {% if object.event_set.all.count == 1 %}
+          {{object.event_set.all.count}} event
+          {% else %}
+          {{object.event_set.all.count}} events
+          {% endif %}
+        {% endif %}
+      </span>
+    </h2>
+      {% endif %}
+      {% if object.opportunity_set.all.count != 0%}
+      <h2 style="color:#E76F51;">
+       23
+      <span style="color:grey;font-size:0.3em;" class="small">
+        mentors on
+        {% if object.opportunity_set.all.count != 0 %}
+          {% if object.opportunity_set.all.count == 1 %}
+          {{object.opportunity_set.all.count}} opportunity
+          {% else %}
+          {{object.opportunity_set.all.count}} opportunities
+          {% endif %}
+        {% endif %}
+      </span>
+      </h2>
+      {% endif %}
+      <div onclick="location.href='{% url 'dyasynora_app-profile-detail' object.author.id %}';" style="cursor: pointer;" class="row author-div">
+      <div class="col-3">
+        <img class="proj-author-img" src="{{object.author.profile.image.url}}">
+      </div>
+      <div class="col-9">
+      <span style="font-size:0.7em;"> Project by:</span><br>
+      <span><b>{{object.author.profile.first_name}} {{object.author.profile.last_name}}</b></span><br>
+      <span style="font-size:0.7em;">{{object.author.project_set.count}} projects | 3 supported </span>
+      </div>
+     </div>
     </div>
   </div>
-  <!-- End -->
-  <div class="p-5 bg-white rounded shadow mb-5">
-    <!-- Rounded tabs -->
-    <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
-      <li class="nav-item flex-sm-fill">
-        <a id="idea-tab" data-toggle="tab" href="#idea" role="tab" aria-controls="idea" aria-selected="true" class="nav-link border-0 text-uppercase font-weight-bold active"><i class="fas fa-lightbulb"></i> Idea</a>
-      </li>
-      <li class="nav-item flex-sm-fill">
-        <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><i class="fas fa-images"></i> Gallery</a>
-      </li>
-      <li class="nav-item flex-sm-fill">
-        <a id="supporters-tab" data-toggle="tab" href="#supporters" role="tab" aria-controls="supporters" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><i class="fas fa-hands-helping"></i> Supporters</a>
-      </li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-      <div id="idea" role="tabpanel" aria-labelledby="idea-tab" class="tab-pane fade px-4 py-5 show active">
-        <p class="text-muted">{{object.description_customisable|safe}}</p>
-        <div class="container py-5">
-        <div class="row">
-            <div class="col-lg-7 mx-auto">
-                <!-- Timeline -->
-                <ul class="timeline">
-                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h2 class="h5 mb-0">Title of section 1</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>21 March, 2019</span>
-                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-                    </li>
-                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h2 class="h5 mb-0">Title of section 2</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>5 April, 2019</span>
-                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper.</p>
-                        <p class="text-small mt-2 font-weight-light">Libero expedita explicabo eius fugiat quia aspernatur autem laudantium error architecto recusandae natus sapiente sit nam eaque, consectetur porro molestiae ipsam! Deleniti.</p>
-                    </li>
-                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h2 class="h5 mb-0">Title of section 3</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>18 August, 2019</span>
-                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-                    </li>
-                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h2 class="h5 mb-0">Title of section 4</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>10 October, 2019</span>
-                        <p class="text-small mt-2 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-                        <p class="text-small mt-2 font-weight-light">Voluptatibus temporibus esse illum eum aspernatur, fugiat suscipit natus! Eum corporis illum nihil officiis tempore. Excepturi illo natus libero sit doloremque, laborum molestias rerum pariatur quam ipsam necessitatibus incidunt, explicabo.</p>
-                    </li>
-                </ul><!-- End -->
+  <ul class="nav nav-pills tabs-center nav-justified" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a onclick="changeBg('#2A9D8F','pills-story-tab');" style="border-radius: 10px; border: solid 3px #2A9D8F;" class="nav-link p-2" id="pills-story-tab" data-toggle="pill" href="#pills-story" role="tab" aria-controls="pills-story" title="Project Story" aria-selected="true">Story</a>
+  </li>
+  <li class="nav-item">
+    <a onclick="changeBg('#E9C46A','pills-campaigns-tab');" style="border-radius: 10px; border: solid 3px #E9C46A;" class="nav-link p-2" id="pills-campaigns-tab" data-toggle="pill" href="#pills-campaigns" role="tab" aria-controls="pills-campaigns" title="Project Campaigns" aria-selected="false">Campaigns</a>
+  </li>
+  <li class="nav-item">
+    <a onclick="changeBg('#F4A261','pills-events-tab');" style="border-radius: 10px; border: solid 3px #F4A261;" class="nav-link p-2" id="pills-events-tab" data-toggle="pill" href="#pills-events" role="tab" aria-controls="pills-events" title="Project Events" aria-selected="false">Events</a>
+  </li>
+  <li class="nav-item">
+    <a onclick="changeBg('#E76F51','pills-opportunities-tab');" style="border-radius: 10px; border: solid 3px #E76F51;" class="nav-link p-2" id="pills-opportunities-tab" data-toggle="pill" href="#pills-opportunities" role="tab" aria-controls="pills-opportunities" title="Project Opportunities" aria-selected="false">Opportunities</a>
+  </li>
+  <li class="nav-item">
+    <a onclick="changeBg('#264653','pills-overview-tab');" style="border-radius: 10px; border: solid 3px #264653;" class="nav-link p-2" id="pills-overview-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview" title="Project Overview" aria-selected="false">Overview</a>
+  </li>
+  </ul>
+<div class="tab-content tabs-center" id="pills-tabContent">
+  <div style="border-radius: 10px; padding:30px;border: 3px solid #2A9D8F;" class="tab-pane fade show active" id="pills-story" role="tabpanel" aria-labelledby="pills-story-tab">
+    {{object.story|safe}}
+  </div>
+  <div style="border-radius: 10px; padding:30px; border: 3px solid #E9C46A;" class="tab-pane fade" id="pills-campaigns" role="tabpanel" aria-labelledby="pills-campaigns-tab">
+      <div class="row">
+      {% for campaign in campaigns %}
+      {% if campaign.project == object %}
+        <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="preview-crop zoom bg-white rounded">
+            <img src="{{campaign.image.url}}" class="cropped img-fluid card-img-top">
+            <div class="p-4">
+            <h6><b>{{campaign.title}}</b></h6>
+            <p class="small">{{campaign.description}}</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+              {{campaign.amount}}
             </div>
+          </div>
         </div>
+          <br>
+        </div>
+      {% endif %}
+    {% endfor %}
     </div>
+  </div>
+  <div style="border-radius: 10px; padding:30px; border: 3px solid #F4A261;" class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-contact-events">
 
-      </div>
-      <div id="gallery" role="tabpanel" aria-labelledby="gallery-tab" class="tab-pane fade px-4 py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+    <div class="row">
+      {% for event in events %}
+      {% if event.project == object %}
+
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">{{event.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="col-md-4">
-                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+            <div class="modal-body">
+              {{event.message}}
             </div>
-            <div class="col-md-4">
-                  <img src="https://i.ibb.co/GFBCv3j/h1.png" alt="Fjords" style="width:100%">
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-      <div id="supporters" role="tabpanel" aria-labelledby="supporters-tab" class="tab-pane fade px-4 py-5">
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
+      <!-- End Modal -->
+
+        <div data-toggle="modal" data-target="#modal" style="cursor: pointer;" class="shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class="preview-crop zoom bg-white rounded">
+            <img src="{{event.image.url}}" class="cropped img-fluid card-img-top">
+            <div class="p-4">
+            <h6><b>{{event.name}}</b></h6>
+            <p class="small">{{event.message}}</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+              {{campaign.amount}}
+            </div>
+          </div>
+        </div>
+        <div>
+          <br>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
     </div>
-    <!-- End rounded tabs -->
+  </div>
+  <div style="border-radius: 10px; padding:30px; border: 3px solid #E76F51;" class="tab-pane fade" id="pills-opportunities" role="tabpanel" aria-labelledby="pills-opportunities-tab">
+    <div class="row">
+      {% for opportunity in opportunities %}
+      {% if opportunity.project == object %}
+       <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div class="preview-crop zoom bg-white rounded">
+          <img src="{{opportunity.image.url}}" class="cropped img-fluid card-img-top">
+          <div class="p-4">
+          <h6><b>{{opportunity.title}}</b></h6>
+          <p class="small">{{opportunity.description}}</p>
+          <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+            {{opportunity.amount}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <br>
+      </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+  <div style="border-radius: 10px; padding:30px; border: 3px solid #264653;" class="tab-pane fade" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+    The {{object.title}} journey so far
   </div>
 </div>
-
-<div class="container">
-  <!-- For demo purpose -->
-  <div class="row py-5">
-    <div class="col-lg-9 mx-auto text-white text-center">
-      <h1 class="display-4">Get Involved!</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-9 mx-auto">
-      <!-- Accordion -->
-      <div id="accordionExample" class="accordion shadow">
-        <!-- Accordion item 1 -->
-        <div class="card">
-          <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark text-uppercase collapsible-link py-2 ">Events</a></h6>
-          </div>
-          <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
-            <div class="card-body p-5">
-              <p class="font-weight-light m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accordion item 2 -->
-        <div class="card">
-          <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Campaigns</a></h6>
-          </div>
-          <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5">
-              <p class="font-weight-light m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accordion item 3 -->
-        <div class="card">
-          <div id="headingThree" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Opportunities</a></h6>
-          </div>
-          <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5">
-              <p class="font-weight-light m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 </div>
-
+</div>
+</div>
   {% endblock content %}

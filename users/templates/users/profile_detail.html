@@ -1,14 +1,14 @@
 {% extends "dyasynora_app/base.html" %}
 {% block content %}
 <div class="row py-5 px-4">
-    <div class="col-xl-12 col-md-10 col-sm-10 mx-auto">
+    <div class="col-xl-8 col-md-8 col-sm-10 mx-auto">
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 bg-dark">
-                <div class="media align-items-end profile-header">
-                    <div class="profile mr-3"><img src="{{object.image.url}}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+            <div class="px-4 pt-0 pb-4">
+                <div>
+                    <div><img src="{{object.image.url}}" class="center mb-2">
                     {% if object.user == user %}
-                    <a href="{% url 'profile' %}" class="btn btn-dark btn-sm btn-block">Edit profile</a>
+                    <a href="{% url 'profile' %}" style="background-color:#264653; color:white;" class="btn btn-sm btn-block">Edit profile</a>
                     {% endif %}
                   </div>
                     <div class="media-body mb-5 text-white">
@@ -21,37 +21,56 @@
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">{{object.user.project_set.all.count}}</h5><small class="text-muted"> <i class="fas fa-code mr-1"></i>Projects</small>
+                        <h5 class="font-weight-bold mb-0 d-block">{{object.user.project_set.all.count}}</h5><small class="text-muted">Campaigns</small>
                     </li>
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">4</h5><small class="text-muted"> <i class="fa fa-comment-o mr-2"></i>Comments</small>
+                        <h5 class="font-weight-bold mb-0 d-block">4</h5><small class="text-muted">Events</small>
                     </li>
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">3</h5><small class="text-muted"> <i class="fas fa-list"></i> Categories</small>
+                        <h5 class="font-weight-bold mb-0 d-block">3</h5><small class="text-muted">Opportunities</small>
                     </li>
                 </ul>
             </div>
 
-            <div class="py-4 px-4">
-                <div class="py-4">
-                    <h5 class="mb-3">Recent projects</h5>
-                    {% for project in projects %}
-                    <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                      <div class="zoom bg-white rounded shadow-sm">
-                          <img src="{{project.image.url}}" class="cropped img-fluid card-img-top">
-                        <div class="p-4">
-                          <h5>{{project.title}}</h5>
-                          <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                          <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                            <p class="small mb-0"><i class="fas fa-hands-helping"></i><span> {{project.supporters}}</span></p>
-                            <div class="badge badge-danger px-3 rounded-pill font-weight-normal"><i class="fas fa-map-marker-alt"></i> {{project.city}}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            <!-- Classic tabs -->
+<div class="classic-tabs mx-2">
+
+  <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link  waves-light active show" id="projects-tab-classic-shadow" data-toggle="tab" href="#projects-classic-shadow"
+        role="tab" aria-controls="projects-classsic-shadow" aria-selected="true">Projects</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="campaigns-tab-classic-shadow" data-toggle="tab" href="#campaigns-classic-shadow"
+        role="tab" aria-controls="campaigns-classic-shadow" aria-selected="false">Campaigns</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="events-tab-classic-shadow" data-toggle="tab" href="#events-classic-shadow"
+        role="tab" aria-controls="events-classic-shadow" aria-selected="false">Events</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="opportunities-tab-classic-shadow" data-toggle="tab" href="#opportunities-classic-shadow"
+        role="tab" aria-controls="opportunities-classic-shadow" aria-selected="false">Opportunities</a>
+    </li>
+  </ul>
+
+  <div class="tab-content card" id="myClassicTabContentShadow">
+    <div class="tab-pane fade active show" id="projects-classic-shadow" role="tabpanel" aria-labelledby="projects-tab-classic-shadow">
+      <p>Projects</p>
+    </div>
+    <div class="tab-pane fade" id="campaigns-classic-shadow" role="tabpanel" aria-labelledby="campaigns-tab-classic-shadow">
+      <p>Campaigns</p>
+    </div>
+    <div class="tab-pane fade" id="events-classic-shadow" role="tabpanel" aria-labelledby="events-tab-classic-shadow">
+      <p>Events </p>
+    </div>
+    <div class="tab-pane fade" id="opportunities-classic-shadow" role="tabpanel" aria-labelledby="opportunities-tab-classic-shadow">
+      <p>Opportunities</p>
+    </div>
+  </div>
+
+</div>
+<!-- Classic tabs -->
         </div>
         <!-- End profile widget -->
     </div>

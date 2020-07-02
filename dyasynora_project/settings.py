@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -117,8 +118,9 @@ CKEDITOR_CONFIGS = {
 
     'special': {
         'toolbar': 'Special',
-        'height': 200,
-        'width': 400,
+        'height': '100%',
+        'autoParagraph': False,
+        'width': '100%',
         'toolbar_Special': [
             ['Bold'],['Link'],['Image'],
         ],

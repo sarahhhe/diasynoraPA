@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.contrib import messages
 from django.db.models import Q
 
-from .models import Project
+from .models import Project, Campaign, Event, Opportunity
 from .models import Activity
 from django.apps import apps
 Profile = apps.get_model('users', 'Profile')
+from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -31,6 +32,13 @@ def activities_json(request):
     return JsonResponse({
         'activities' : list(Activity.objects.values())
     })
+
+def user_projects(request):
+    projects = Project.objects.all()
+    context = {
+        'projects': projects.order_by('-date_created'),
+    }
+    return render(request, 'dyasynora_app/user_projects.html', context)
 
 def add_project(request):
     if request.method == 'POST':
@@ -74,8 +82,16 @@ class PostListView(ListView):
     context_object_name = 'projects'
     ordering = ['-date_created']
 
-class PostDetailView(DetailView):
+class ProjectDetailView(DetailView):
     model = Project
+    success_url = '/'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectDetailView, self).get_context_data(**kwargs)
+        context['campaigns'] = Campaign.objects.all()
+        context['events'] = Event.objects.all()
+        context['opportunities'] = Opportunity.objects.all()
+        return context
 
 class UserDetailView(DetailView):
     model = Profile
@@ -88,9 +104,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Project
-    fields = ['name', 'description', 'image', 'location']
+    fields = ['title', 'image', 'story']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -102,7 +118,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Project
     success_url = '/'
 

@@ -2,26 +2,173 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #264653;
 }
-/*!
- * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
- * Copyright 2013-2019 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
- */
+h2, h3, h4, h5, h6, p {
+ font-family: 'Montserrat', sans-serif;
+ font-weight: 400;
+ color: #264653;
+}
+.author-div {
+  width: 100%;
+  border-radius: 10px;
+  padding: 0.2em;
+}
+.proj-author-img{
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+}
+.proj-author-img-feed{
+  height: 2.8em;
+  width: 2.8em;
+  border-radius: 50%;
+}
+.discover-title
+{
+    font-size: 36px;
+    color: #264653;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.discover-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    background-color: #2A9D8F;
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #264653;
+    background-color: #264653;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+.feed{
+  height:36em;
+  width:100%;
+  overflow:hidden;
+  padding:0em;
+}
+.preview-crop{
+  height:25em;
+  width:100%;
+  overflow:hidden;
+}
+.badge-crop{
+  padding:0em;
+  height:2em;
+  width:100%;
+  overflow:hidden;
+}
+.story-crop{
+  height:6em;
+  width:100%;
+  overflow:hidden;
+}
+div.c {
+  text-align: center;
+}
+.form-center {
+  margin: auto;
+  width: 65%;
+}
+.leader-color{
+  color: #2A9D8F;
+}
+.leader-bgcolor{
+  background-color: #2A9D8F;
+}
+.sponsor-color{
+  color: #E9C46A;
+}
+.sponsor-bgcolor{
+  background-color: #E9C46A;
+}
+.volunteer-color{
+  color: #F4A261;
+}
+.volunteer-bgcolor{
+  background-color: #F4A261;
+}
+.mentor-color{
+  color: #E76F51;
+}
+.mentor-bgcolor{
+  background-color: #E76F51;
+}
+.proj-center {
+  margin: auto;
+  width: 85%;
+  border-radius: 1px;
+  border: 0.02em solid white;
+  padding: 10px;
+  background-color: white;
+}
+h1.proj-title {
+  font-size: 4em;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.2em;
+}
+.proj-img-center {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+.tabs-center{
+  margin: auto;
+  width: 85%;
+  padding-top: 0.3em;
+}
+.tab-content{
+  height: 100vh;
+  height: 100%;
+}
+.vertical-center {
+  display: flex;
+  align: center;
+}
  .bg-cover {
      background-size: cover !important;
  }
- h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  color: #264653;
-}
-
 .login,
 .image {
   min-height: 100vh;
+}
+hr {
+  color: #264653;
 }
 .cropdiv {
 width:15em;
@@ -37,7 +184,7 @@ align:center;
 }
 .cropped {
     width: 100%; /* width of container */
-    height: 12em; /* height of container */
+    height: 15em; /* height of container */
     object-fit: cover;
     padding:1em;
 }
@@ -161,6 +308,7 @@ a{
 p.white{
   color:white;
 }
+
 .banner {
   background: #a770ef;
   background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
@@ -187,10 +335,17 @@ header.masthead h1 {
     padding-bottom: 12rem;
   }
   header.masthead h1 {
-    font-size: 3rem;
+    font-size: 3em;
   }
 }
-
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em;
+  width: 20em;
+  border-radius: 50%;
+}
 .showcase .showcase-text {
   padding: 3rem;
 }

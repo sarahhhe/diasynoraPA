@@ -1,8 +1,9 @@
 {% extends "dyasynora_app/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div style="padding-left:5em;">
-    <form action="" method="POST">
+<div class="row py-5 mt-4 align-items-center"">
+<div class="jumbotron form-center">
+    <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
       {{ form.media }}
       <div class="form-group">
@@ -12,15 +13,18 @@
           {{ form.image|as_crispy_field }}
       </div>
       <div class="form-group">
-      {{ form.description_customisable|as_crispy_field }}
+      {{ form.story|as_crispy_field }}
       </div>
       <div class="form-group">
           <p><span class="require">*</span> - required fields</p>
       </div>
-      <input type="submit" class="btn btn-primary" value="Create" type="submit">
-      </input>
-      <a href="{% url 'dyasynora_app-feed' %}" class="btn btn-secondary">
+      <a href="{% url 'dyasynora_app-feed' %}" style="color:white;background-color:#E76F51" class="btn">
       Cancel</a>
+      <input type="submit" class="btn" style="color:white;background-color:#264653" value="Save" type="submit">
+      </input>
     </form>
   </div>
+  </div>
+
+
 {% endblock content %}
