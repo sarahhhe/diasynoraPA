@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'location_field.apps.DefaultConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'social_django',
 ]
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'dyasynora_project.urls'
@@ -69,10 +71,20 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'dyasynora_project.wsgi.application'
 
@@ -157,3 +169,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'dyasynora_app-feed'
 LOGIN_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '594841081460750'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '60bbc11e63d3a5f400fa2a8b7ec852b5'  # App Secret
+# Force https redirect
+#SECURE_SSL_REDIRECT = True
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
