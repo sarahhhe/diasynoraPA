@@ -9,7 +9,7 @@
   </div>
   {% endif %}
   <div class="proj-center">
-  <div class="c">
+  <div class="col-md c">
     <div class="proj-title"><h1>{{object.title}}</h1></div>
     <p title="Project Location"><i class="fas fa-map-marker-alt"></i> Bahri, Khartoum &nbsp;
        <i class="fas fa-hand-holding-usd"></i>
@@ -39,10 +39,10 @@
     </p>
   </div>
   <div class="row proj-center">
-    <div class="col-8">
+    <div class="col-md">
     <img class="proj-img-center" src="{{object.image.url}}">
     </div>
-    <div class="col-4">
+    <div class="col-md">
       {% if object.campaign_set.all.count != 0%}
       <h2 style="color:#E9C46A;">
         809,760 SDG
