@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import PostListView, ProjectDetailView, PostCreateView, ProjectUpdateView, ProjectDeleteView, UserDetailView
+from .views import PostListView, ProjectDetailView, PostCreateView, ProjectUpdateView, ProjectDeleteView, UserDetailView, SearchResultsView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -20,6 +20,7 @@ urlpatterns = [
     path('new_activity/', views.new_activity, name='new activity'),
     path('add/project/', views.add_project, name='project-create'),
     path('add/event/', views.add_event, name='event-create'),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

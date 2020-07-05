@@ -1,7 +1,47 @@
 {% extends "dyasynora_app/base.html" %}
   {% block content %}
-  <div style="padding:2em;">
+  <div style="padding:1em;">
   <div class="container">
+    <!-- Campaign Modal -->
+    <div class="modal fade" id="campaignmodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="campaign-modal-label"></h5>
+            <button type="button" class="close close-campaign-modal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="campaign-modal-body">
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-campaign-modal" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Campaign Modal -->
+
+    <!-- Event Modal -->
+    <div class="modal fade" id="eventmodal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="event-modal-label"></h5>
+            <button type="button" class="close close-event-modal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="event-modal-body">
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-event-modal" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Event Modal -->
+
   {% if object.author == user %}
   <div class="c">
     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-project' object.id %}">Edit Project</a>
@@ -9,7 +49,7 @@
   </div>
   {% endif %}
   <div class="proj-center">
-  <div class="col-md c">
+  <div class="col-lg c">
     <div class="proj-title"><h1>{{object.title}}</h1></div>
     <p title="Project Location"><i class="fas fa-map-marker-alt"></i> Bahri, Khartoum &nbsp;
        <i class="fas fa-hand-holding-usd"></i>
@@ -39,10 +79,10 @@
     </p>
   </div>
   <div class="row proj-center">
-    <div class="col-md">
+    <div class="col-lg">
     <img class="proj-img-center" src="{{object.image.url}}">
     </div>
-    <div class="col-md">
+    <div class="col-lg">
       {% if object.campaign_set.all.count != 0%}
       <h2 style="color:#E9C46A;">
         809,760 SDG
@@ -128,7 +168,7 @@
       <div class="row">
       {% for campaign in campaigns %}
       {% if campaign.project == object %}
-        <div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div data-toggle="modal" data-id="{{campaign.title}}" id="{{campaign.description}}" data-target="#campaignmodal" style="cursor: pointer;" class="open-campaign-modal shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
           <div class="preview-crop zoom bg-white rounded">
             <img src="{{campaign.image.url}}" class="cropped img-fluid card-img-top">
             <div class="p-4">
@@ -146,33 +186,10 @@
     </div>
   </div>
   <div style="border-radius: 10px; padding:30px; border: 3px solid #F4A261;" class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-contact-events">
-
     <div class="row">
       {% for event in events %}
       {% if event.project == object %}
-
-      <!-- Modal -->
-      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">{{event.name}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{event.message}}
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Modal -->
-
-        <div data-toggle="modal" data-target="#modal" style="cursor: pointer;" class="shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div data-toggle="modal" data-id="{{event.name}}" id="{{event.message}}" data-target="#eventmodal" style="cursor: pointer;" class="open-event-modal shadow-sm col-xl-3 col-lg-4 col-md-6 mb-4">
           <div class="preview-crop zoom bg-white rounded">
             <img src="{{event.image.url}}" class="cropped img-fluid card-img-top">
             <div class="p-4">

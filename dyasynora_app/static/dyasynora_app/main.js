@@ -1,6 +1,38 @@
-$(document).on("click", ".open-AddBookDialog", function () {
-     var myBookId = $(this).data('id');
-     $(".modal-body #bookId").val( myBookId );
+function openSearch() {
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function closeSearch() {
+  document.getElementById("myOverlay").style.display = "none";
+}
+$(document).ready(function(){
+  $(".open-event-modal").click(function(){
+    console.log("open event modal")
+    document.getElementById("event-modal-label").append($(this).attr('data-id'));
+    document.getElementById("event-modal-body").append($(this).attr('id'));
+    console.log($(this).attr('data-id'));
+    console.log($(this).attr('id'));
+  });
+  $(".close-event-modal").click(function(){
+    console.log("close event modal")
+    document.getElementById("event-modal-label").innerHTML = "";
+    document.getElementById("event-modal-body").innerHTML = "";
+  });
+});
+
+$(document).ready(function(){
+  $(".open-campaign-modal").click(function(){
+    console.log("open campaign modal")
+    document.getElementById("campaign-modal-label").append($(this).attr('data-id'));
+    document.getElementById("campaign-modal-body").append($(this).attr('id'));
+    console.log($(this).attr('data-id'));
+    console.log($(this).attr('id'));
+  });
+  $(".close-campaign-modal").click(function(){
+    console.log("close campaign modal")
+    document.getElementById("campaign-modal-label").innerHTML = "";
+    document.getElementById("campaign-modal-body").innerHTML = "";
+  });
 });
 
 function changeBg(color,id){
@@ -8,7 +40,6 @@ function changeBg(color,id){
   var elements = document.getElementsByTagName("a");
   for (i = 0; i < elements.length; i++){
   if (elements[i].id == id) {
-    console.log(elements[i].id)
     elements[i].style.backgroundColor = color;
    }
   else{

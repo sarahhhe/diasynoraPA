@@ -1,0 +1,65 @@
+{% extends "dyasynora_app/base.html" %}
+  {% block content %}
+  <div style="padding:2em;">
+  <small class="text-muted">Search results</small>
+  <br><br>
+  <div style="padding:1em;" class="container-fluid">
+    <div class="px-lg-5">
+      <div class="row">
+{% for project in object_list %}
+<div onclick="location.href='{% url 'dyasynora_app-project-detail' project.id %}';" style="cursor: pointer;" class="col-xl-3 col-lg-4 col-md-6 mb-4 filter
+{% if project.campaign_set.all.count != 0 %}
+  campaign
+{% endif %}
+{% if project.event_set.all.count != 0 %}
+  event
+{% endif %}
+{% if project.opportunity_set.all.count != 0 %}
+  opportunity
+{% endif %}">
+  <div class="feed zoom bg-white rounded shadow-sm">
+      <img src="{{project.image.url}}" class="cropped img-fluid card-img-top">
+    <div class="p-4">
+      <div class="row author-div">
+      <div class="col-3">
+        <img class="proj-author-img-feed" src="{{project.author.profile.image.url}}">
+      </div>
+      <div class="col-9">
+      <span style="font-size:0.7em;"><b>{{project.author.profile.first_name}} {{project.author.profile.last_name}}</b></span><br>
+      <span style="font-size:0.6em;">London, UK{{project.author.profile.location}}</span>
+    </div>
+     </div>
+      <h5><b>{{project.title}}</b></h5>
+      <div class="story-crop"><p class="small">{{project.story|safe}}</p></div>
+      <div class="badge-crop d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+        {% if project.campaign_set.all.count != 0 %}
+          {% if project.campaign_set.all.count == 1 %}
+          <div style="background-color:#E9C46A" class="badge px-3 rounded-pill font-weight-normal">{{project.campaign_set.all.count}}  Campaign</div>
+          {% else %}
+          <div style="background-color:#E9C46A" class="badge px-3 rounded-pill font-weight-normal">{{project.campaign_set.all.count}} Campaigns</div>
+          {% endif %}
+        {% endif %}
+        {% if project.event_set.all.count != 0 %}
+          {% if project.event_set.all.count == 1 %}
+          <div style="background-color:#F4A261" class="badge px-3 rounded-pill font-weight-normal">{{project.event_set.all.count}}  Event</div>
+          {% else %}
+            <div style="background-color:#F4A261" class="badge px-3 rounded-pill font-weight-normal">{{project.event_set.all.count}}  Events</div>
+          {% endif %}
+        {% endif %}
+        {% if project.opportunity_set.all.count != 0 %}
+          {% if project.opportunity_set.all.count == 1 %}
+          <div style="background-color:#E76F51" class="badge px-3 rounded-pill font-weight-normal">{{project.opportunity_set.all.count}}  Opportunity</div>
+          {% else %}
+            <div style="background-color:#E76F51" class="badge px-3 rounded-pill font-weight-normal">{{project.opportunity_set.all.count}} Opportunities</div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% empty %}
+        <p> Sorry, there were no results found :( </p>
+{% endfor %}
+</div></div></div>
+</div>
+  {% endblock content %}

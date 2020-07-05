@@ -14,6 +14,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from dyasynora_app.forms import ProjectForm, EventForm
 
+from search_views.search import SearchListView
+from search_views.filters import BaseFilter
+
 def home(request):
     context = {
         'projects': Project.objects.all() # Query data from DB
@@ -23,6 +26,17 @@ def home(request):
         query = request.GET['q']
         context['query'] = str(query)
     return render(request, 'dyasynora_app/diasynora.html', context)
+
+class SearchResultsView(ListView):
+    model = Project
+    template_name = 'dyasynora_app/search_results.html'
+
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        object_list = Project.objects.filter(
+            Q(title__icontains=query) | Q(story__icontains=query)
+        )
+        return object_list
 
 def crowdsourcers(request):
     return render(request, 'dyasynora_app/crowdsourcers.html')

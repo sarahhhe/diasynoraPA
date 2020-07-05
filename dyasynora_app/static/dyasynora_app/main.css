@@ -10,6 +10,88 @@ h2, h3, h4, h5, h6, p {
  font-weight: 400;
  color: #264653;
 }
+.searchButton {
+  height: 2em;
+  background: transparent;
+  text-align: center;
+  color: #264653;
+  cursor: pointer;
+  font-size: 14px;
+}
+.openBtn {
+  border: none;
+  padding: 9px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.searchButton:hover {
+  color: grey;
+}
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 46%;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  margin: auto;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.overlay .closebtn:hover {
+  color: #ccc;
+}
+
+.overlay input[type=text] {
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 80%;
+  background: white;
+}
+
+.overlay input[type=text]:hover {
+  background: #f1f1f1;
+}
+
+.overlay button {
+  float: left;
+  width: 20%;
+  padding: 15px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.rounded-corners-search-box{
+  border-radius: 10px 0px 0px 10px;
+}
+.rounded-corners-search-btn{
+  border-radius: 0px 10px 10px 0px;
+}
+.overlay button:hover {
+  background: #bbb;
+}
 .author-div {
   width: 100%;
   border-radius: 10px;
@@ -44,7 +126,7 @@ h2, h3, h4, h5, h6, p {
 .filter-button
 {
     font-size: 18px;
-    border: 1px solid #42B32F;
+    border: 1px solid #42B32F§;
     border-radius: 5px;
     text-align: center;
     color: #ffffff;
@@ -145,7 +227,6 @@ h1.proj-title {
 .proj-img-center {
   margin: auto;
   width: 100%;
-  padding: 10px;
 }
 .tabs-center{
   margin: auto;
@@ -440,35 +521,7 @@ ul {
   margin-bottom: 20px;
   width: 300px;
 }
-.search {
-  width: 100%;
-  position: relative;
-  display: flex;
-  padding: 0.2em;
-}
-.searchTerm {
-  width: 10em;
-  border: 0.2em solid white;
-  border-right: none;
-  height: 2em;
-  border-radius: 50em 0 0 50em;
-  outline: none;
-  color: green;
-}
-.searchTerm:focus{
-  color: #00B4CC;
-}
-.searchButton {
-  width: 2.5em;
-  height: 2em;
-  border: 0.2em solid white;
-  background: transparent;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 50em 50em 0;
-  cursor: pointer;
-  font-size: 15px;
-}
+
 .article-title {
   color: #444444;
 }
